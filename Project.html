@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Chapri Error Page</title>
+    <style>
+      body {
+        background: linear-gradient(to right, lime, pink, yellow, purple);
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        color: yellow;
+        text-align: center;
+        padding: 50px;
+        animation: flashBg 1s infinite alternate;
+        overflow: hidden;
+      }
+
+      @keyframes flashBg {
+        0% {
+          background-color: lime;
+        }
+        50% {
+          background-color: pink;
+        }
+        100% {
+          background-color: yellow;
+        }
+      }
+
+      h1 {
+        font-size: 80px;
+        color: red;
+        text-shadow: 3px 3px 20px #ff0000, 0 0 25px #ff8000, 0 0 5px #ff8000;
+        animation: spin 1s infinite linear, blink 0.5s alternate infinite;
+        margin-bottom: 30px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
+
+      .fire {
+        font-size: 40px;
+        background: red;
+        padding: 20px;
+        border: 5px dotted yellow;
+        display: inline-block;
+        border-radius: 50px;
+        box-shadow: 0 0 30px 5px orange;
+        animation: bounce 0.5s infinite alternate;
+      }
+
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-25px);
+        }
+      }
+
+      .gif {
+        margin-top: 50px;
+      }
+
+      .gif img {
+        width: 300px;
+        border: 8px dashed pink;
+        border-radius: 50%;
+        box-shadow: 0 0 20px 5px blue;
+        animation: shake 1s infinite alternate;
+      }
+
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .btn {
+        margin-top: 30px;
+        padding: 20px 30px;
+        font-size: 25px;
+        background: lime;
+        color: black;
+        border: 4px solid red;
+        border-radius: 20px;
+        cursor: pointer;
+        animation: shakeBtn 0.3s infinite alternate;
+      }
+
+      @keyframes shakeBtn {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg);
+        }
+      }
+
+      /* Exploding Text Message */
+      #error_message {
+        font-size: 45px;
+        color: white;
+        background: black;
+        padding: 15px;
+        display: inline-block;
+        margin-top: 50px;
+        animation: explodeText 0.5s infinite alternate;
+        border-radius: 50px;
+      }
+
+      @keyframes explodeText {
+        0% {
+          transform: scale(1);
+          color: red;
+        }
+        100% {
+          transform: scale(1.2);
+          color: yellow;
+        }
+      }
+
+      /* Confetti Effect */
+      .confetti {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        display: none;
+      }
+
+      .confetti div {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        animation: confetti-fall 4s linear infinite;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* Dance Emoji */
+      .emoji {
+        font-size: 50px;
+        animation: dance 0.5s infinite alternate;
+      }
+
+      @keyframes dance {
+        0% {
+          transform: rotate(-20deg);
+        }
+        100% {
+          transform: rotate(20deg);
+        }
+      }
+
+      /* Fire Emoji Message */
+      #goodbye {
+        font-size: 40px;
+        font-weight: bold;
+        color: red;
+        margin-top: 70px;
+        animation: fireTrail 1s infinite;
+        text-transform: uppercase;
+      }
+
+      @keyframes fireTrail {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="goodbye">🔥🔥🔥 Goodbye Sir! 🔥🔥🔥</div>
+
+    <!-- Confetti Explosion -->
+    <div class="confetti" id="confetti"></div>
+
+    <!-- Dancing Emoji -->
+    <div class="emoji">💃🕺</div>
+
+    <!-- Music Section (Epic Remix) -->
+    <audio autoplay loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        type="audio/mp3"
+      />
+      Your browser does not support the audio element.
+    </audio>
+
+    <h1>💥🔥 Chapri Error Handler 9000 💥🔥</h1>
+    <div id="error_message">💔 Epic Code Failure: Error in the matrix! 💔</div>
+
+    <div class="gif">
+      <img
+        src="https://media.tenor.com/YvPpUEz4gxwAAAAM/boys-dancing-chapri.gif"
+        alt="Chapri Dance"
+      />
+    </div>
+
+    <button class="btn" onclick="tryAgain()">TRY AGAIN BRO 💥💥💥</button>
+
+    <script>
+      // Confetti Generator
+      function generateConfetti() {
+        const confettiContainer = document.getElementById("confetti");
+        for (let i = 0; i < 100; i++) {
+          let confettiPiece = document.createElement("div");
+          confettiPiece.style.left = Math.random() * 100 + "vw";
+          confettiPiece.style.animationDuration = Math.random() * 4 + 2 + "s";
+          confettiPiece.style.animationDelay = Math.random() * 2 + "s";
+          confettiContainer.appendChild(confettiPiece);
+        }
+        confettiContainer.style.display = "block";
+      }
+
+      function addalert(msg) {
+        // fake function to break everything 😂
+        thisFunctionDoesNotExist(msg);
+      }
+
+      function tryAgain() {
+        try {
+          addalert("Chapri Mode Activated 🚨");
+        } catch (err) {
+          document.getElementById("error_message").innerHTML =
+            "💔 BROKEN CODE DETECTED: " + err.message + " 💀💀💀";
+          alert("Areee Bhai Bhai Bhai!! Error Again!!! 🥵💥");
+
+          // Trigger confetti explosion
+          generateConfetti();
+        }
+      }
+
+      // Run once on page load
+      tryAgain();
+    </script>
+  </body>
+</html>
